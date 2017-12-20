@@ -2,6 +2,8 @@
 import os
 import logger as logger_
 
+
+MAX_POOL_EXECUTORS = 4
 APP_PATH = os.path.dirname(__file__)
 SQL_PATH = os.path.join(APP_PATH, 'sql')
 MEDIA = os.path.join(APP_PATH, 'media')
