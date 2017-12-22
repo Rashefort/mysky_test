@@ -17,8 +17,8 @@
         {% for pdf_file in files_list %}
             {% include 'pdf_file.html' %}
         {% end %}
-        {% if not current_user %}
-            {% include 'uload_form.html' %}
+        {% if current_user %}
+            {% include 'upload_form.html' %}
         {% end %}
     </body>
 </html>

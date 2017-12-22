@@ -15,4 +15,5 @@ if __name__ == '__main__':
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(port=settings.SERVICE['port'],
                        address=settings.SERVICE['host'])
+    # http_server.listen(settings.SERVICE['port'])
     tornado.ioloop.IOLoop.current().start()

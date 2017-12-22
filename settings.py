@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import os
-import logger as logger_
+# import logger as logger_
 
 
 MAX_POOL_EXECUTORS = 4
@@ -11,7 +11,7 @@ MEDIA_PDF = os.path.join(MEDIA, 'pdf')
 MEDIA_PAGES = os. path.join(MEDIA_PDF, 'pages')
 DB_PATH = os.path.join(APP_PATH, 'database.db')
 SQL_ECHO = True
-logger = logger_.rotating_log(os.path.join(APP_PATH, 'mysky.log'))
+# logger = logger_.rotating_log(os.path.join(APP_PATH, 'mysky.log'))
 
 settings = {
     'cookie_secret': '61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o/Vo=',
@@ -25,4 +25,7 @@ settings = {
     'template_path': os.path.join(os.path.dirname(__file__), "templates"),
     'archive_path': os.path.join(os.path.dirname(__file__), 'media'),
 }
-SERVICE = {'port': 8088, 'address': '0.0.0.0'}
+SERVICE = {'port': 8088, 'host': '0.0.0.0'}
+CONTENT_TYPES = ('application/pdf', )
+PREVIEW_FORMAT = 'png'
+PREVIEW_BACKGROUND_COLOR = 'white'

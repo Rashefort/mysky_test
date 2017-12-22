@@ -4,7 +4,9 @@ import handlers
 
 def routes_setup():
     return [
-        (r'/data', handlers.Main),
-        (r'/login', landlers.Login),
-        (r'/login', landlers.Logout),
+        (r'/post', handlers.PostFile),
+        (r'/login', handlers.Login),
+        (r'/logout', handlers.Logout),
+        (r'/', handlers.Main),
+        (r'/pdf/(.+)', handlers.Preview),
         ]

@@ -1,5 +1,5 @@
-<form action="/">
+<form enctype="multipart/form-data" action="/post" method="POST" class="upload_form">
     <input type="file" name="filename" value="fileupload" id="fileupload">
-    <label for="fileupload">Выберите pdf-файл для загрузки</label>
     <input type="submit" value="ОТПРАВИТЬ">
+    {% module xsrf_form_html() %}
 </form>

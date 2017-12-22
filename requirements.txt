@@ -1,3 +1,2 @@
 tornado
-PyPDF2
-# PythonMagick - apt-get install PythonMagick, ибо сборка обвязки для ImageMagic
+pgmagic

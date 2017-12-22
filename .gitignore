@@ -101,3 +101,5 @@ ENV/
 .mypy_cache/
 database.db*
 .vscode/last.sql
+media/*
+mysky.log*

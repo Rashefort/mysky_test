@@ -1,0 +1,38 @@
+.pdf_row {
+    border: 1px solid lightblue;
+    padding-left: 3px;
+    margin-right: 1px;
+}
+.datetime, .file_name, .file_name_id, .user_name, .current_user {
+    display: inline-block;
+}
+.datetime {
+    width: 210px;
+    background-color: beige;
+}
+.user_name {
+    float: right;
+    width: 130px;
+    background-color: blanchedalmond;
+    padding-left: 2px;
+}
+.file_name_id {
+    width: 50px;
+    background-color: antiquewhite;
+    text-align: right;
+    padding-right: 2px;
+}
+.upload_form {
+    background-color: gainsboro;
+    padding: 3px;
+}
+.login_part {
+    display: inline-block;
+}
+.login_form {
+    padding: 5px;
+    background-color: red;
+}
+.logout_form {
+    padding: 5px;
+}

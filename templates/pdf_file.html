@@ -1,0 +1,6 @@
+<div class="pdf_row">
+    <div class="datetime">{{ pdf_file['loaded'] }}</div>
+    <div class="file_name_id" title="файл: {{ pdf_file['hashed_name'] }}.pdf">{{ pdf_file['id'] }}</div>
+    <div class="file_name"><a href="/pdf/{{ pdf_file['hashed_name'] }}">{{ pdf_file['name'] }}</a></div>
+    <div class="user_name">{{ pdf_file['user_name'] }} ({{ pdf_file['user_id'] }})</div>
+</div>
