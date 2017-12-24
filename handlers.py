@@ -26,7 +26,7 @@ class Main(BaseHandler):
                     title='Полка pdf',
                     files_list=files_list,
                     error_message='',
-                    current_user=self.current_user.decode(), )
+                    current_user=self.current_user.decode() if self.current_user else None, )
 
 
 class Preview(BaseHandler):
