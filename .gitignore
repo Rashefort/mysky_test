@@ -101,6 +101,7 @@ ENV/
 .mypy_cache/
 database.db*
 .vscode/last.sql
-media/*
+media/pdf/*.pdf
+media/pdf/pages/*.png
 mysky.log*
 mysky_test.log*
