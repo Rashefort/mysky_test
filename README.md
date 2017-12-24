@@ -11,3 +11,12 @@
 
 В качестве базы данных используйте SQLite.
 Вместе со ссылкой на код или кодом, напишите нам, как запускать ваш сервис.
+
+
+1. установить git clone https://github.com/andrewisakov/mysky_test
+2. cd mysky_test
+3. Удовлетворить тем или иным способом содержимое requirements.txt.
+4. pgmagic - обёртка для GraphicsMagic (улучшенный форк ImageMagic)
+5. запуск python3 main.py
+6. Открыть в браузере http://127.0.0.1:8088
+7. логин/пароль - user/user
