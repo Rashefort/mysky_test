@@ -51,6 +51,9 @@
     display: block;
     height: 32px;
 }
-.form_page_select, .png_download {
+.form_page_select, .png_download, .total_pages {
     display: inline-block;
+}
+.total_pages {
+    float: right;
 }
