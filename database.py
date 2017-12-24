@@ -9,7 +9,7 @@ from tornado.log import logging
 import settings
 
 
-executor = concurrent.futures.ProcessPoolExecutor(settings.MAX_POOL_EXECUTORS)
+# executor = concurrent.futures.ProcessPoolExecutor(settings.MAX_POOL_EXECUTORS)
 sqlite_semaphore = BoundedSemaphore()
 db = sqlite3.connect(f'{settings.DB_PATH}',)
 db.row_factory = lambda _cursor, row: {col[0]: row[i] for i, col in enumerate(_cursor.description)}
