@@ -16,10 +16,6 @@ db.row_factory = lambda _cursor, row: {col[0]: row[i] for i, col in enumerate(_c
 cursor = db.cursor()
 
 
-def _row_factory(_cursor, row):
-    return {col[0]: row[i] for i, col in enumerate(_cursor.description)}
-
-
 @coroutine
 def _get_sql(sql_name: str):
     sql_name = sql_name.lower()
