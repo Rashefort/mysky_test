@@ -103,3 +103,4 @@ database.db*
 .vscode/last.sql
 media/*
 mysky.log*
+mysky_test.log*

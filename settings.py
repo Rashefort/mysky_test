@@ -29,3 +29,4 @@ SERVICE = {'port': 8088, 'host': '0.0.0.0'}
 CONTENT_TYPES = ('application/pdf', )
 PREVIEW_FORMAT = 'png'
 PREVIEW_BACKGROUND_COLOR = 'white'
+CHUNK_SIZE = 524288

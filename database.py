@@ -8,10 +8,9 @@ import concurrent.futures
 from tornado.gen import coroutine
 from tornado.concurrent import run_on_executor
 from tornado.locks import BoundedSemaphore
-from tornado.ioloop import IOLoop
-from tornado.concurrent import return_future
+# from tornado.ioloop import IOLoop
+# from tornado.concurrent import return_future
 from tornado.log import logging
-from tornado.concurrent import run_on_executor
 import settings
 # from settings import logger
 # import pdf_utils as updf
@@ -34,10 +33,11 @@ def _get_sql(sql_name: str):
     sql_name += '.sql' if not sql_name.endswith('.sql') else sql_name
     try:
         with open(f'{settings.SQL_PATH}/{sql_name}', 'r') as sqlf:
-            return (' '.join(sqlf.readlines()))
+            sql_text = (' '.join(sqlf.readlines()))
     except Exception as e:
         logging.error(f'{e}')
-        return None
+        sql_text = None
+    return sql_text
 
 
 @coroutine
@@ -99,17 +99,34 @@ def insert_pdf(pdf_name: str, hashed_name: str, user_name: str, total_pages: int
 def get_files_list(current_user: str=None):
     # logging.info('database.get_files_list')
     pdf_files = yield _execute('select_pdf_files', {})
-    logging.info(f'database.get_files_list {pdf_files}')
+    logging.debug(f'database.get_files_list {pdf_files}')
     return pdf_files
 
 
 @coroutine
 def get_pdf_pages(pdf_id: int):
     pages = yield _execute('select_pdf_pages', {'pdf_id': pdf_id})
+    pages = pages[0] if pages else -1
     return pages
 
+
+@coroutine
+def get_pdf_page(pdf_id: int, page_no: int):
+    page = yield _execute()
 
 @coroutine
 def get_pdf_hashed_name(pdf_id: int):
     hashed_name = yield _execute('select_pdf_hashed_name', {'pdf_id': pdf_id})
     return hashed_name
+
+
+@coroutine
+def get_real_file_name(hashed_name: str):
+    return_file_name = yield _execute('select_real_file_name', {'name': hashed_name})
+    return return_file_name
+
+
+@coroutine
+def get_pdf_by_hashed_name(hashed_name: str):
+    pdf_file = yield _execute('select_pdf_by_hashed_name', {'hashed_name': hashed_name})
+    return pdf_file

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ title }}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="https://cdn.rawgit.com/brython-dev/brython/stable/www/src/brython.js"></script>
+        <link rel="stylesheet" href="{{ static_url('css/main.css') }}" type="text/css" />
+        <script type="text/python3" src="{{ static_url('py/main.py') }}"></script>
+    </head>
+    <body onload="brython(1)">
+        <div class="page_header">
+            <a class="go_shelf" href="/">< Полка</a>
+            <div class="prev_page">
+                {% if prev_page %}
+                    <a href="{{prev_page[0]}}">{{prev_page[1]}}</a>
+                {% end %}
+            </div>
+            <form class="form_page_select" method="post" action="/pdf/{{hashed_name}}">
+                {% module xsrf_form_html() %}
+                <input class="page_input" value="{{page}}" type="text" id="page_num" name="page_num">
+                <input id="signin-btn" class="btn btn-blue" type="submit" value="->">
+            </form>
+            <div class="next_page">
+                {% if next_page %}
+                    <a href="{{next_page[0]}}">{{next_page[1]}}</a>
+                {% end %}
+            </div>
+            <a class="png_download" href="{{png_url}}" download={{png_url_download}}>ЗАГРУЗИТЬ {{page}}-ю страницу</a>
+        </div>
+        <div class="page_content">
+            <img class="page_png" src="{{png_url}}">
+        </div>
+    </body>
+</html>
