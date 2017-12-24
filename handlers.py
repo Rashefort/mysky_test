@@ -1,32 +1,15 @@
 #!/usr/bin/python3
 import os
-import json
-import hashlib
-import time
-import datetime
-import concurrent.futures
 from tornado.log import logging
 from tornado import web
-from tornado.ioloop import IOLoop
-# from tornado.escape import xhtml_escape
-# from tornado.stack_context import run_with_stack_context, NullContext
-# import dicttoxml
-# from tornado.httpclient import AsyncHTTPClient
-# import tornado.websocket
 from tornado import gen
-# from tornado.queues import Queue
-# from tornado.escape import json_encode
-# from tornado.escape import json_decode
 import pdf_utils as updf
 import database
 import settings
 
 
-executor = concurrent.futures.ProcessPoolExecutor(settings.MAX_POOL_EXECUTORS)
-
-
 class BaseHandler(web.RequestHandler):
-    # current_user = 'user'
+
     async def data_received(self):
         logging.debug(f'{self.request}')
 
@@ -82,18 +65,6 @@ class PostFile(BaseHandler):
     SUPPORTED_METHODS = ('POST', )
 
     @gen.coroutine
-    def prepare(self):
-        # filename = self.get_body_argument('filename')
-        # logging.info(f'prepare: {self._request_summary()}')
-        self.io_loop = IOLoop.current()
-
-    @gen.coroutine
-    def on_finish(self):
-        # Переименовать принятый файл
-        logging.info(f'Приём файла завершён.')
-        # gen.Task
-
-    @gen.coroutine
     def post(self, *args, **kwargs):
         # logging.debug(f'{dir(self)}')
         for field_name, files in self.request.files.items():
@@ -107,10 +78,10 @@ class PostFile(BaseHandler):
         self.redirect('/')
 
 
-class REST(BaseHandler):
-    SUPPORTED_METHODS = ('delete',)
-    async def delete(self):
-        pass
+# class REST(BaseHandler):
+#     SUPPORTED_METHODS = ('delete',)
+#     async def delete(self):
+#         pass
 
 
 class Login(BaseHandler):
@@ -148,7 +119,7 @@ class Login(BaseHandler):
 
 
 class Logout(BaseHandler):
-    # @web.authenticated
+
     async def get(self):
         self.clear_cookie("mysky_user")
         self.redirect('/')

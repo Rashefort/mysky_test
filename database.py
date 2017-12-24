@@ -1,19 +1,12 @@
 #!/usr/bin/python3
 import datetime
-import time
-import json
 import sqlite3
 import hashlib
 import concurrent.futures
 from tornado.gen import coroutine
-from tornado.concurrent import run_on_executor
 from tornado.locks import BoundedSemaphore
-# from tornado.ioloop import IOLoop
-# from tornado.concurrent import return_future
 from tornado.log import logging
 import settings
-# from settings import logger
-# import pdf_utils as updf
 
 
 executor = concurrent.futures.ProcessPoolExecutor(settings.MAX_POOL_EXECUTORS)
@@ -73,13 +66,6 @@ async def auth_user(name: str, password: str):
 
 
 @coroutine
-def insert_page(pdf_id: int, hashed_name: str):
-    page_id = yield _execute('insert_pdf_page', ({'hashed_name': hashed_name,
-                                                  'pdf_id': pdf_id}, ))
-    return page_id
-
-
-@coroutine
 def insert_pdf(pdf_name: str, hashed_name: str, user_name: str, total_pages: int=-1):
     user_id = yield _execute('select_user_id', {'user_name': user_name}, )
     logging.info(f'insert_pdf: user_name={user_name} user_id={user_id} selected')
@@ -104,17 +90,6 @@ def get_files_list(current_user: str=None):
 
 
 @coroutine
-def get_pdf_pages(pdf_id: int):
-    pages = yield _execute('select_pdf_pages', {'pdf_id': pdf_id})
-    pages = pages[0] if pages else -1
-    return pages
-
-
-@coroutine
-def get_pdf_page(pdf_id: int, page_no: int):
-    page = yield _execute()
-
-@coroutine
 def get_pdf_hashed_name(pdf_id: int):
     hashed_name = yield _execute('select_pdf_hashed_name', {'pdf_id': pdf_id})
     return hashed_name
@@ -130,3 +105,32 @@ def get_real_file_name(hashed_name: str):
 def get_pdf_by_hashed_name(hashed_name: str):
     pdf_file = yield _execute('select_pdf_by_hashed_name', {'hashed_name': hashed_name})
     return pdf_file
+
+
+def init():
+    SQL = (("CREATE TABLE if not exists pdf_files (id INTEGER PRIMARY KEY ON CONFLICT ROLLBACK "
+            "AUTOINCREMENT "
+            "UNIQUE ON CONFLICT ROLLBACK "
+            "NOT NULL ON CONFLICT ROLLBACK, "
+            "name STRING NOT NULL ON CONFLICT ROLLBACK, "
+            "hashed_name STRING (32) UNIQUE ON CONFLICT ROLLBACK "
+            "NOT NULL ON CONFLICT ROLLBACK, "
+            "loaded DATETIME NOT NULL ON CONFLICT ROLLBACK DEFAULT (datetime('now', 'localtime')), "
+            "published DATETIME, "
+            "user_id INTEGER NOT NULL ON CONFLICT ROLLBACK, "
+            "pages INTEGER)"),
+           ('CREATE TABLE if not exists users ('
+            'id INTEGER PRIMARY KEY ON CONFLICT ROLLBACK AUTOINCREMENT UNIQUE ON CONFLICT ROLLBACK NOT NULL ON CONFLICT ROLLBACK, '
+            'name STRING UNIQUE ON CONFLICT ROLLBACK NOT NULL ON CONFLICT ROLLBACK, '
+            'password STRING (64) NOT NULL ON CONFLICT ROLLBACK);'),
+           ('INSERT INTO users (name, password) '
+            'values ("user", "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8");'),)
+    for sql in SQL:
+        try:
+            c = db.cursor()
+            c.execute(sql)
+            c.close()
+            db.commit()
+        except Exception as e:
+            # print(e)
+            pass

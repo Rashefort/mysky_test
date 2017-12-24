@@ -29,12 +29,10 @@ def pdf_file_pages(hashed_name: str):
 @coroutine
 def get_page_url(hashed_name: str, page: int):
     pdf_name, max_pages = yield pdf_file_pages(hashed_name)
-    page = min(page, max_pages)
+    page = min(page, max_pages-1)
     page = max(0, page)
-    # print(f'get_page_url: {hashed_name} {page}')
     pdf_file = f'{settings.MEDIA_PDF}/{hashed_name}.pdf[{page}]'
     png_file = f'{hashed_name}{page}.{settings.PREVIEW_FORMAT}'
-    # print(f'get_page_url: {max_pages}')
     if not os.path.exists(f'{settings.MEDIA_PAGES}/{png_file}'):
         pdf = Image(pdf_file)
         pdf.write(f'{settings.MEDIA_PAGES}/{png_file}')
@@ -50,6 +48,6 @@ def save_pdf_file(body: bytes, pdf_name: str, user_name: str):
         pdf.write(body)
     total_pages = PdfFileReader(f'{settings.MEDIA_PDF}/{hashed_name}.pdf').getNumPages()
     pdf_data = yield database.insert_pdf(pdf_name, hashed_name, user_name, total_pages)
-    logging.debug(f'save_pdf_file: {pdf_name} ({total_pages} pages) saved ({len(bytes)} bytes) in {hashed_name}.pdf')
+    logging.debug(f'save_pdf_file: {pdf_name} ({total_pages} pages) saved ({len(body)} bytes) in {hashed_name}.pdf')
     return pdf_data
 
