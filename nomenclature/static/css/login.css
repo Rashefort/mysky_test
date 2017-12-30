@@ -1,0 +1,77 @@
+body {
+    margin: 0px;
+}
+
+#image {
+    text-align: center;
+    padding-top: 15px;
+}
+
+img {
+    width: 50px;
+}
+
+#text {
+    text-align: center;
+    font-family: "Quicksand";
+    font-size: 24px;
+    letter-spacing: -0.5px;
+}
+
+form {
+    margin: 0 auto;
+    width: 268px;
+    padding: 20px 20px 20px 20px;
+    border: 1px solid #d8dee2;
+    border-radius: 5px;
+}
+
+table {
+    width: 262px;
+    margin-bottom: 15px;
+}
+
+td {
+    vertical-align: bottom;
+}
+
+label {
+    font-family: "Quicksand";
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.label {
+    height: 35px;
+}
+
+#id_username, #id_password {
+    width: 244px;
+    border: 1px solid #d1d5da;
+    border-radius: 3px;
+    padding-top: 6px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 6px;
+    background-color: #faffbd;
+}
+
+#submit {
+    border: 1px solid;
+    border-radius: 0.25em;
+    margin-left: 3px;
+    margin-right: 3px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    background-color: #269f42;
+    width: 262px;
+    color: #ffffff;
+    font-family: "Quicksand";
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#error {
+    text-align: center;
+    color: red;
+}

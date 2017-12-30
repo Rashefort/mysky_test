@@ -1,0 +1,42 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="{% static 'images/favicon.ico' %}" rel="shortcut icon" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css?family=Righteous|Quicksand" rel="stylesheet">
+        <!-- <link href="https://fonts.googleapis.com/css?family=Catamaran|Play|Rokkitt|Slabo" rel="stylesheet"> -->
+        <link href="{% static 'css/general.css' %}" rel="stylesheet">
+        <meta charset="utf-8">
+
+        <title>Warehouse 13</title>
+    </head>
+<!--=========================================================================-->
+    <body>
+        <div id="header">
+            {% if user.is_authenticated %}
+                <div class="signup"><a href="{% url 'logout' %}">Sign out</a></div>
+                <div class="or">or</div>
+                <div class="signin"><a href="/">Add</a></div>
+            {% else %}
+                <div class="signup"><a href="/">Sign up</a></div>
+                <div class="or">or</div>
+                <div class="signin"><a href="{% url 'login' %}">Sign in</a></div>
+            {% endif %}
+
+            <img src="{% static 'images/wblogo.png' %}">
+            <h1><a href="/">WAREHOUSE 13</a></h1>
+        </div>
+<!--=========================================================================-->
+        <div id="artefacts">
+            <div class="row">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+<!--=========================================================================-->
+        <div id="footer">
+            <small id="copyright">Copyright (c) by 2017</small>
+        </div>
+<!--=========================================================================-->
+    </body>
+</html>

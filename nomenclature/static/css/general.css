@@ -1,0 +1,77 @@
+body {
+    background: #304374;
+    margin: 0px;
+}
+
+#header {
+    background-color: #1b2339;
+    width: 100%;
+    height: 96px;
+    position: fixed;
+}
+
+#header img {
+    padding-left: 50px;
+    padding-top: 24px;
+    width: 50px;
+    float: left;
+}
+
+#header h1, #header h1 a, #header h1 a:visited, #header h1 a:active {
+    padding-left: 15px;
+    margin-top: 22px;
+    font-family: "Righteous";
+    font-size: 42px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#header .signin a {
+    padding-right: 5px;
+    padding-top: 35px;
+    font-family: "Quicksand";
+    font-size: 18px;
+    color: #ffffff;
+    float: right;
+    text-decoration: none;
+}
+
+#header .or {
+    padding-right: 5px;
+    padding-top: 35px;
+    font-family: "Quicksand";
+    font-size: 18px;
+    color: #3d5dae;
+    float: right;
+    text-decoration: none;
+}
+
+#header .sign a {
+    padding-right: 50px;
+    padding-top: 35px;
+    font-family: "Quicksand";
+    font-size: 18px;
+    color: #ffffff;
+    float: right;
+    text-decoration: none;
+}
+
+#artefacts {
+    padding-top: 96px;
+    color: #ffffff;
+}
+
+#footer {
+    background-color: #1b2339;
+    width: 100%;
+    height: 25px;
+    position: fixed;
+    bottom: 0;
+}
+
+#copyright {
+    padding-right: 5px;
+    padding-top: 5px;
+    color: #ffffff;
+    float: right;
+}
