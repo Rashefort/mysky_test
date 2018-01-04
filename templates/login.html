@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}login{% endblock %}
+
+{% block additional_css %}
+    <link type="text/css" href="{% static 'css/input.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/modal.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+{% block content %}
+    <p class="image"><a href="/"><img src="{% static 'images/bwlogo.png' %}"></a></p>
+    <p class="title">Sign in to Warehouse 13</p>
+
+    <div class="border">
+        <form action="" method="post">
+            {% csrf_token %}
+
+            {% for field in form.visible_fields %}
+                <div class="form-field">
+                    {% ifequal field.label "Password" %}
+                        <p class="forgot"><a href="#openModal">Forgot password?</a></p>
+                    {% endifequal %}
+
+                    <div class="label">{{ field.label }}</div>
+                    <div class="control">{{ field }}</div>
+                </div>
+            {% endfor %}
+
+            {% for field in form.hidden_fields %}
+                {{ field }}
+            {% endfor %}
+
+            <div class="submit-button">
+                <input class="button" type="submit" value="Sign in">
+            </div>
+
+            <input type="hidden" name="next" value="{{ next }}">
+        </form>
+    </div>
+
+    <div class="space border">
+        <p class="new">New to Warehouse?&nbsp;<a href="{% url 'signup' %}">Create an account.</a></p>
+    </div>
+
+    {% if form.errors %}
+        <p class="error">Your username and password didn't match.</p>
+    {% endif %}
+
+    <div id="openModal" class="modalDialog">
+        <div>
+            <a href="#close" title="Close" class="close">X</a>
+            <h2>Забыли пароль?</h2>
+            <p>Данный блок недоделан по причине природной лени и отсутствия любого желания напоминать кому-либо забытые пароли.</p>
+        </div>
+    </div>
+{% endblock %}

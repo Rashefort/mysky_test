@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}login{% endblock %}
+
+{% block additional_css %}
+    <link type="text/css" href="{% static 'css/input.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+{% block content %}
+    <p class="image"><a href="/"><img src="{% static 'images/bwlogo.png' %}"></a></p>
+    <p class="title">Sign in to Warehouse 13</p>
+
+    <div class="border">
+        <form action="" method="post">
+            {% csrf_token %}
+
+            {% for field in form.visible_fields %}
+                <div class="form-field">
+                    <div class="label">{{ field.label }}</div>
+                    <div class="control">{{ field }}</div>
+                </div>
+            {% endfor %}
+
+            <div class="submit-button">
+                <input class="button" type="submit" value="Sign up">
+            </div>
+
+            <input type="hidden" name="next" value="{{ next }}">
+
+            {% for field in form.hidden_fields %}
+                {{ field }}
+            {% endfor %}
+        </form>
+    </div>
+
+    {% if form.errors %}
+        {% if form.errors %}
+            <ul class="error">
+                {% for field in form.visible_fields %}
+                     <li>{{ field.errors }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}

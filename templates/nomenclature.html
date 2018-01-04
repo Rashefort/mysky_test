@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block additional_css %}
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+{% block content %}
+    <div id="header">
+        {% if user.is_authenticated %}
+            <h2 class="headright"><a href="{% url 'logout' %}">Sign out</a></h2>
+            <h2 class="headtext">&nbsp;or&nbsp;</h2>
+            <h2><a href="/">Add</a></h2>
+        {% else %}
+            <h2 class="headright"><a href="{% url 'signup' %}">Sign up</a></h2>
+            <h2 class="headtext">&nbsp;or&nbsp;</h2>
+            <h2><a href="{% url 'login' %}">Sign in</a></h2>
+        {% endif %}
+
+        <img src="{% static 'images/wblogo.png' %}">
+        <h1><a href="/">WAREHOUSE 13</a></h1>
+    </div>
+{% endblock %}

@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+    width: 48px;
+}
+
+.image {
+    text-align: center;
+    padding-top: 16px;
+}
+
+.title {
+    text-align: center;
+    font-family: "Quicksand";
+    font-weight: 600px;
+    font-size: 24px;
+    margin-bottom: 32px;
+}
+
+.border {
+    margin: 0 auto;
+    padding: 20px 20px 20px 20px;
+    border: 1px solid #d8dee2;
+    border-radius: 5px;
+    width: 268px;
+}
+
+.forgot a {
+    color: #0366d6;
+    float: right;
+    text-decoration: none;
+}
+
+.label {
+    margin-top: 16px;
+}
+
+#id_username, #id_password, #id_password1, #id_password2 {
+    background-color: rgb(250, 255, 189);
+    padding: 6px 8px 6px 8px;
+    width: 248px;
+}
+
+.button {
+    margin-top: 25px;
+    padding: 6px;
+    width: 100%;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    background-image: linear-gradient(-180deg, #34d058 0%, #28a745 90%);
+    border: 1px solid rgba(27,31,35,0.2);
+    border-radius: 0.25em;
+}
+
+.space {
+    margin-top: 20px;
+}
+
+.error {
+    text-align: center;
+    color: red;
+}
+
+.new {
+    text-align: center;
+    margin: 0px;
+}
+
+.new a {
+    color: #0366d6;
+}

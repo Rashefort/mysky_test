@@ -1,20 +1,15 @@
-#from django.utils import timezone
 from django.db import models
-import uuid
 
 
 #-------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------
 class Artefact(models.Model):
-    number = models.UUIDField(primary_key=True, default=uuid.uuid4)
     keeper = models.ForeignKey('auth.User', on_delete=models.PROTECT)
-    title = models.CharField(max_length=256, default='noname')
+    created = models.DateTimeField(auto_now_add=True)
     pages = models.IntegerField(default=0)
-    created = models.DateTimeField(auto_now=True)
 
     #---------------------------------------------------------------------------
-    def accepted(self, title):
-        self.title = title
+    def accepted(self):
         self.save()
 
     #---------------------------------------------------------------------------

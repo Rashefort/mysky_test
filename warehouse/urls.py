@@ -21,7 +21,7 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/login/', views.login, name='login'),
+    path('accounts/login/', views.login, name='login', kwargs={'template_name': 'login.html'}),
     path('accounts/logout/', views.logout, name='logout', kwargs={'next_page': '/'}),
-    path('', include('nomenclature.urls')),
+    path('', include('warehouse.nomenclature.urls')),
 ]
