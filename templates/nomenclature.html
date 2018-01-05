@@ -3,7 +3,8 @@
 
 
 {% block additional_css %}
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/modal.css' %}" rel="stylesheet">
 {% endblock %}
 
 
@@ -12,7 +13,27 @@
         {% if user.is_authenticated %}
             <h2 class="headright"><a href="{% url 'logout' %}">Sign out</a></h2>
             <h2 class="headtext">&nbsp;or&nbsp;</h2>
-            <h2><a href="/">Add</a></h2>
+            <h2><a href="#openModal">Add</a></h2>
+
+            <div id="openModal" class="modalDialog">
+                <div>
+                    <a href="#close" title="Close" class="close">X</a>
+                    <h2>Upload file</h2>
+                    <p>
+                        {% csrf_token %}
+                        <form method="post" action="{% url 'upload' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% for field in form.visible_fields %}
+                                <div class="label_modal">{{ field.label }}</div>
+                                <div class="nontrol">{{ field }}</div>
+                            {% endfor %}
+
+                            <button type="submit">Upload</button>
+                        </form>
+                    </p>
+                </div>
+            </div>
+
         {% else %}
             <h2 class="headright"><a href="{% url 'signup' %}">Sign up</a></h2>
             <h2 class="headtext">&nbsp;or&nbsp;</h2>
@@ -22,4 +43,5 @@
         <img src="{% static 'images/wblogo.png' %}">
         <h1><a href="/">WAREHOUSE 13</a></h1>
     </div>
+
 {% endblock %}

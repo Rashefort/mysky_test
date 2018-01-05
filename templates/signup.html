@@ -35,6 +35,10 @@
         </form>
     </div>
 
+    <div class="space border">
+        <p class="new">Have an account?&nbsp;<a href="{% url 'login' %}">Sign in to account</a></p>
+    </div>
+
     {% if form.errors %}
         {% if form.errors %}
             <ul class="error">
@@ -44,5 +48,13 @@
             </ul>
         {% endif %}
     {% endif %}
+
+    <!-- {% if form.subject.errors %}
+        <ol class="error">
+        {% for error in form.subject.errors %}
+            <li><strong>{{ error|escape }}</strong></li>
+        {% endfor %}
+        </ol>
+    {% endif %} -->
 
 {% endblock %}

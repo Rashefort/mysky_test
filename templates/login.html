@@ -23,7 +23,7 @@
                         <p class="forgot"><a href="#openModal">Forgot password?</a></p>
                     {% endifequal %}
 
-                    <div class="label">{{ field.label }}</div>
+                    <div class="label_login">{{ field.label }}</div>
                     <div class="control">{{ field }}</div>
                 </div>
             {% endfor %}
@@ -41,7 +41,7 @@
     </div>
 
     <div class="space border">
-        <p class="new">New to Warehouse?&nbsp;<a href="{% url 'signup' %}">Create an account.</a></p>
+        <p class="new">New to Warehouse?&nbsp;<a href="{% url 'signup' %}">Create an account</a></p>
     </div>
 
     {% if form.errors %}
