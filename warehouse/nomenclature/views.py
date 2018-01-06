@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.utils import timezone
 from .forms import ArtefactForm
 from .models import Artefact
-
+import PyPDF2
 
 
 #-------------------------------------------------------------------------------
@@ -42,10 +42,15 @@ def upload(request):
     if request.method == 'POST':
         form = ArtefactForm(request.POST, request.FILES)
 
+        print(request.FILES['artefact'])
+
         if form.is_valid():
+            file = PyPDF2.PdfFileReader(request.FILES['artefact'])
+
             artefact = form.save(commit=False)
             artefact.keeper = request.user
             artefact.created = timezone.now()
+            artefact.pages = file.getNumPages()
             artefact.save()
 
             return redirect('/')

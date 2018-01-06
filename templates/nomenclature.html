@@ -20,7 +20,6 @@
                     <a href="#close" title="Close" class="close">X</a>
                     <h2>Upload file</h2>
                     <p>
-                        {% csrf_token %}
                         <form method="post" action="{% url 'upload' %}" enctype="multipart/form-data">
                             {% csrf_token %}
                             {% for field in form.visible_fields %}
@@ -28,7 +27,7 @@
                                 <div class="nontrol">{{ field }}</div>
                             {% endfor %}
 
-                            <button type="submit">Upload</button>
+                            <button type="submit">Загрузить</button>
                         </form>
                     </p>
                 </div>
