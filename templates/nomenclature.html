@@ -1,46 +1,26 @@
-{% extends "base.html" %}
+{% extends 'main.html' %}
 {% load staticfiles %}
 
+{% block main_title %}artefacts{% endblock %}
 
-{% block additional_css %}
-    <link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
-    <link type="text/css" href="{% static 'css/modal.css' %}" rel="stylesheet">
-{% endblock %}
-
-
-{% block content %}
-    <div id="header">
-        {% if user.is_authenticated %}
-            <h2 class="headright"><a href="{% url 'logout' %}">Sign out</a></h2>
-            <h2 class="headtext">&nbsp;or&nbsp;</h2>
-            <h2><a href="#openModal">Add</a></h2>
-
-            <div id="openModal" class="modalDialog">
-                <div>
-                    <a href="#close" title="Close" class="close">X</a>
-                    <h2>Upload file</h2>
-                    <p>
-                        <form method="post" action="{% url 'upload' %}" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            {% for field in form.visible_fields %}
-                                <div class="label_modal">{{ field.label }}</div>
-                                <div class="nontrol">{{ field }}</div>
-                            {% endfor %}
-
-                            <button type="submit">Загрузить</button>
-                        </form>
-                    </p>
-                </div>
-            </div>
-
-        {% else %}
-            <h2 class="headright"><a href="{% url 'signup' %}">Sign up</a></h2>
-            <h2 class="headtext">&nbsp;or&nbsp;</h2>
-            <h2><a href="{% url 'login' %}">Sign in</a></h2>
-        {% endif %}
-
-        <img src="{% static 'images/wblogo.png' %}">
-        <h1><a href="/">WAREHOUSE 13</a></h1>
+{% block content_main %}
+    <div class="nomenclature">
+    {% for artefact in artefacts %}
+        <div class="row">
+            <p class="col-20p bg-dark">{{ artefact.keeper }}</p>
+            <p class="col-50p bg-light">
+                <a href="{% url 'images' %}?id={{ artefact.pk }}&page=1">{{ artefact.title }}</a>
+            </p>
+            <p class="col-5p col-center bg-dark">{{ artefact.pages }}</p>
+            <p class="col-20p col-center bg-light">{{ artefact.date }}</p>
+            <p class="col-5p col-center bg-dark">
+                {% if user.is_authenticated %}
+                <a href="media\{{ artefact.artefact }}" download="{{ artefact.title }}" class="blue">&#10010;</a>
+                {% else %}
+                <a href="media\6afcb786858a1107edc28b07b4a2486a" download="{{ artefact.title }}" class="red">&#10010;</a>
+                {% endif %}
+            </p>
+        </div>
+    {% endfor %}
     </div>
-
 {% endblock %}

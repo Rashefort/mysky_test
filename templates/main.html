@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}{% block main_title %}{% endblock %}{% endblock %}
+
+{% block additional_css %}
+    <link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/modal.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+{% block content %}
+    <div id="header">
+        <table width="100%">
+            <tr>
+                <td id="header-logo" width="32" align="center">
+                    <a href="admin/"><img src="{% static 'images/logowb.png' %}" height="32" float:="left"></a>
+                </td>
+
+                <td id="header-space" height="54">
+                    <a href="/">WAREHOUSE 13</a>
+                    {% if user.is_authenticated %}
+                    <span>for {{ user }}</span>
+                    {% endif %}
+                </td>
+
+                <td id="header-enter" align="right">
+                    <h3>
+                        {% if user.is_authenticated %}
+                        <a href="#openModal">Add</a>
+                        <span>&nbsp;or&nbsp;</span>
+                        <a href="{% url 'logout' %}">Sign out</a>
+                        {% else %}
+                        <a href="{% url 'login' %}">Sign in</a>
+                        <span>&nbsp;or&nbsp;</span>
+                        <a href="{% url 'signup' %}">Sign up</a>
+                        {% endif %}
+                    </h3>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    {% block content_main %}
+    {% endblock %}
+
+    <div id="openModal" class="modalDialog">
+        <div id="upload">
+            <a href="" title="Close" class="close">X</a>
+            <h3>Add artefact</h3>
+            <form method="post" action="{% url 'upload' %}" enctype="multipart/form-data" class="border_modal">
+                {% csrf_token %}
+                {% for field in form.visible_fields %}
+                    <div class="nontrol">{{ field }}</div>
+                {% endfor %}
+
+                <button type="submit">Загрузить</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

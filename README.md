@@ -1,6 +1,3 @@
-НЕ ЗАКОНЧЕНО!
-----------
-
 Т.к. я не знаю Tornado и пока не собираюсь его учить, всё это будет переделано под Django (как только я его выучу).
 
 Интерфейс чуть менее, чем полностью слизан с github, во-первых, интерфейс вообще не нужен, во-вторых, мне лень было искать нечто столь же простое и функциональное, в третьих - и так сойдет.
@@ -22,10 +19,10 @@
 
 # Установка и запуск
 1. Используется >=python-3.5 и >=django-2.0
-2. установить git clone https://github.com/Rashefort/mysky_test
-3. cd mysky_test
-4. Удовлетворить тем или иным способом содержимое requirements.txt.
-5. pgmagic - обёртка для GraphicsMagic (также требуется GhostScript)
-6. запуск manage.py runserver
+2. git clone https://github.com/Rashefort/mysky_test
+3. Удовлетворить тем или иным способом содержимое requirements.txt.
+4. Установить GraphicsMagic - http://www.graphicsmagick.org/download.html
+5. Установить GhostScript - https://www.ghostscript.com/download/
+6. Выполнить - manage.py runserver
 7. Открыть в браузере http://127.0.0.1:8000
-8. логин/пароль - user/pazzword
+8. логин/пароль - admin/pazzword

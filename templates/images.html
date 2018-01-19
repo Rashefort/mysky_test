@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+
+{% block content_main %}
+<div class="table">
+    <center>
+        <table>
+            <caption>
+                <div class="half">Total pages: {{ pages }}</div>
+                <div>
+                    <form method="get">
+                        <input type="hidden" name="id" value="{{ id }}">
+                        <input type="text" name="page" id="apage" value="" size="10">
+                        <input type="submit" class="ok" value="ok">
+                    </form>
+                </div>
+            </caption>
+            <tr>
+                <td>
+                    {% if back %}
+                    <a href="?id={{ id }}&page={{ back }}"">
+                    {% endif %}
+                        <img class="back-page" src="{% static 'images/back.png' %}">
+                    {% if back %}
+                    </a>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if user.is_authenticated %}
+                    <a href="{% static 'pages/' %}{{ image }}" download="{{ name }}">
+                    {% else %}
+                    <a href="{% static 'pages/' %}6afcb786858a1107edc28b07b4a2486a_1.png" download="{{ name }}">
+                    {% endif %}
+                        <img class="png" src="{% static 'pages/' %}{{ image }}">
+                    </a>
+                </td>
+                <td>
+                    {% if next %}
+                    <a href="?id={{ id }}&page={{ next }}">
+                    {% endif %}
+                        <img class="next-page" src="{% static 'images/next.png' %}">
+                    {% if next %}
+                    </a>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+    </center>
+</div>
+
+{% endblock %}

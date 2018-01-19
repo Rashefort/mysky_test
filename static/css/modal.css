@@ -54,6 +54,12 @@
     background: #00d9ff;
 }
 
+.border_modal {
+    padding: 3px 3px 3px 3px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+
 .label_modal {
     margin-bottom: 16px;
 }
@@ -63,6 +69,11 @@
     width: 100%;
 }
 
+#upload {
+    padding-bottom: 30px;
+}
+
 button {
+    margin-top: 8px;
     float: right;
 }

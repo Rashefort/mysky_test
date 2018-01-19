@@ -4,57 +4,47 @@
 {% block title %}login{% endblock %}
 
 {% block additional_css %}
-    <link type="text/css" href="{% static 'css/input.css' %}" rel="stylesheet">
+<link type="text/css" href="{% static 'css/input.css' %}" rel="stylesheet">
 {% endblock %}
 
 
 {% block content %}
-    <p class="image"><a href="/"><img src="{% static 'images/bwlogo.png' %}"></a></p>
-    <p class="title">Sign in to Warehouse 13</p>
+<p class="image"><a href="/"><img src="{% static 'images/logobw.png' %}"></a></p>
+<p class="title">Sign in to Warehouse 13</p>
 
-    <div class="border">
-        <form action="" method="post">
-            {% csrf_token %}
+<div class="border">
+    <form action="" method="post">
+        {% csrf_token %}
 
-            {% for field in form.visible_fields %}
-                <div class="form-field">
-                    <div class="label">{{ field.label }}</div>
-                    <div class="control">{{ field }}</div>
-                </div>
-            {% endfor %}
-
-            <div class="submit-button">
-                <input class="button" type="submit" value="Sign up">
+        {% for field in form.visible_fields %}
+            <div class="form-field">
+                <div class="label">{{ field.label }}</div>
+                <div class="control">{{ field }}</div>
             </div>
-
-            <input type="hidden" name="next" value="{{ next }}">
-
-            {% for field in form.hidden_fields %}
-                {{ field }}
-            {% endfor %}
-        </form>
-    </div>
-
-    <div class="space border">
-        <p class="new">Have an account?&nbsp;<a href="{% url 'login' %}">Sign in to account</a></p>
-    </div>
-
-    {% if form.errors %}
-        {% if form.errors %}
-            <ul class="error">
-                {% for field in form.visible_fields %}
-                     <li>{{ field.errors }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    {% endif %}
-
-    <!-- {% if form.subject.errors %}
-        <ol class="error">
-        {% for error in form.subject.errors %}
-            <li><strong>{{ error|escape }}</strong></li>
         {% endfor %}
-        </ol>
-    {% endif %} -->
+
+        <div class="submit-button">
+            <input class="button" type="submit" value="Sign up">
+        </div>
+
+        <input type="hidden" name="next" value="{{ next }}">
+
+        {% for field in form.hidden_fields %}
+            {{ field }}
+        {% endfor %}
+    </form>
+</div>
+
+<div class="space border">
+    <p class="new">Have an account?&nbsp;<a href="{% url 'login' %}">Sign in to account</a></p>
+</div>
+
+{% if form.errors %}
+<ul class="error">
+    {% for field in form.visible_fields %}
+    <li>{{ field.errors }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 
 {% endblock %}
