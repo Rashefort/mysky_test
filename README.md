@@ -20,9 +20,9 @@
 # Установка и запуск
 1. Используется >=python-3.5 и >=django-2.0
 2. git clone https://github.com/Rashefort/mysky_test
-3. Удовлетворить тем или иным способом содержимое requirements.txt.
-4. Установить GraphicsMagic - http://www.graphicsmagick.org/download.html
-5. Установить GhostScript - https://www.ghostscript.com/download/
+3. Установить GraphicsMagic - http://www.graphicsmagick.org/download.html
+4. Установить GhostScript - https://www.ghostscript.com/download/
+5. Удовлетворить тем или иным способом содержимое requirements.txt
 6. Выполнить - manage.py runserver
 7. Открыть в браузере http://127.0.0.1:8000
 8. логин/пароль - admin/pazzword
